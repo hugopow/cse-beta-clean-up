@@ -1,0 +1,569 @@
+{
+	"info": {
+		"_postman_id": "94a5fdc2-c8c2-48fd-a8db-5d1ad7a91671",
+		"name": "CSE Beta Clean up",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtain VCD Token",
+			"item": [
+				{
+					"name": "https://{{vcd_public_address}}/api/versions",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "MIRAGE3milldam!",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "administrator@system",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{vcd_public_address}}/api/versions",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"api",
+								"versions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://{{vcd_public_address}}/api/sessions",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Vmware1!",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "administrator@system",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=35.0 ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{vcd_public_address}}/api/sessions",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1. Delete CAPVCD Cluster",
+			"item": [
+				{
+					"name": "1. GET entityTypes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entityTypes",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entityTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. GET entityType capvcdCluster",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entityTypes/urn:vcloud:type:vmware:capvcdCluster:1.1.0",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entityTypes",
+								"urn:vcloud:type:vmware:capvcdCluster:1.1.0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. DEL entityType capvcdCluster",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entityTypes/urn:vcloud:type:vmware:capvcdCluster:1.1.0",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entityTypes",
+								"urn:vcloud:type:vmware:capvcdCluster:1.1.0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Delete VCDEConfig entity",
+			"item": [
+				{
+					"name": "1. GET VCDKEConfig",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entities/types/vmware/VCDKEConfig/1.0.0",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entities",
+								"types",
+								"vmware",
+								"VCDKEConfig",
+								"1.0.0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. GET VCDKEConfig ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entities/urn:vcloud:entity:vmware:VCDKEConfig:a31c028e-2d32-4537-87e1-6b566d714274",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entities",
+								"urn:vcloud:entity:vmware:VCDKEConfig:a31c028e-2d32-4537-87e1-6b566d714274"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. DEL VCDKEConfig",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entities/urn:vcloud:entity:vmware:VCDKEConfig:a31c028e-2d32-4537-87e1-6b566d714274",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entities",
+								"urn:vcloud:entity:vmware:VCDKEConfig:a31c028e-2d32-4537-87e1-6b566d714274"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Delete Entity Type",
+			"item": [
+				{
+					"name": "1. GET VCDKEConfig entityTypes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entityTypes/urn:vcloud:type:vmware:VCDKEConfig:1.0.0",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entityTypes",
+								"urn:vcloud:type:vmware:VCDKEConfig:1.0.0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. GET VCDKEConfig entityTypes with ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entityTypes/urn:vcloud:type:vmware:VCDKEConfig:1.0.0",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entityTypes",
+								"urn:vcloud:type:vmware:VCDKEConfig:1.0.0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.  DEL VCDKEConfig entityTypes ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entityTypes/urn:vcloud:type:vmware:VCDKEConfig:1.0.0",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entityTypes",
+								"urn:vcloud:type:vmware:VCDKEConfig:1.0.0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Change pending cluster's serviceDomain",
+			"item": [
+				{
+					"name": "1. GET entityTypes capvcdCluster",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entities/types/vmware/capvcdCluster/1.1.0",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entities",
+								"types",
+								"vmware",
+								"capvcdCluster",
+								"1.1.0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. GET entity capvcdCluster with ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"VCDKEConfig\",\r\n \"version\": \"0.5.0\",\r\n \"vendor\": \"vmware\",\r\n \"nss\": \"VCDKEConfig\"\r\n }"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entities/urn:vcloud:entity:vmware:capvcdCluster:97f12581-6407-42bb-bfc8-82602471d6a8",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entities",
+								"urn:vcloud:entity:vmware:capvcdCluster:97f12581-6407-42bb-bfc8-82602471d6a8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. PUT capvcdCluster with ID - update serviceDomain",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/*;version=37.0",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"urn:vcloud:entity:vmware:capvcdCluster:97f12581-6407-42bb-bfc8-82602471d6a8\",\r\n    \"entityType\": \"urn:vcloud:type:vmware:capvcdCluster:1.1.0\",\r\n    \"name\": \"tkg-1\",\r\n    \"externalId\": null,\r\n    \"entity\": {\r\n        \"kind\": \"CAPVCDCluster\",\r\n        \"spec\": {\r\n            \"vcdKe\": {\r\n                \"isVCDKECluster\": true,\r\n                \"autoRepairOnErrors\": false,\r\n                \"defaultStorageClassOptions\": {\r\n                    \"filesystem\": \"ext4\",\r\n                    \"k8sStorageClassName\": \"iscsi\",\r\n                    \"vcdStorageProfileName\": \"iscsi\",\r\n                    \"useDeleteReclaimPolicy\": true\r\n                }\r\n            },\r\n            \"capiYaml\": \"apiVersion: cluster.x-k8s.io/v1beta1\\nkind: Cluster\\nmetadata:\\n  name: tkg-1\\n  namespace: tkg-1-ns\\n  labels:\\n    cluster-role.tkg.tanzu.vmware.com/management: \\\"\\\"\\n    tanzuKubernetesRelease: v1.22.9---vmware.1-tkg.1\\n    tkg.tanzu.vmware.com/cluster-name: tkg-1\\n  annotations:\\n    osInfo: ubuntu,20.04,amd64\\n    TKGVERSION: v1.5.4\\nspec:\\n  clusterNetwork:\\n    pods:\\n      cidrBlocks:\\n        - 100.96.0.0/11\\n    serviceDomain: cluster.local\\n    services:\\n      cidrBlocks:\\n        - 100.64.0.0/13\\n  controlPlaneRef:\\n    apiVersion: controlplane.cluster.x-k8s.io/v1beta1\\n    kind: KubeadmControlPlane\\n    name: tkg-1-control-plane\\n    namespace: tkg-1-ns\\n  infrastructureRef:\\n    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\n    kind: VCDCluster\\n    name: tkg-1\\n    namespace: tkg-1-ns\\n---\\napiVersion: v1\\nkind: Secret\\nmetadata:\\n  name: capi-user-credentials\\n  namespace: tkg-1-ns\\ntype: Opaque\\ndata:\\n  username: dGVuYW50MS90ZW5hbnQxLWFkbWlu\\n  refreshToken: U3JyQ2VFMlFrN290TnBJQ1hSRWtLT0dlNzBjT01Vajg=\\n---\\napiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\nkind: VCDCluster\\nmetadata:\\n  name: tkg-1\\n  namespace: tkg-1-ns\\nspec:\\n  site: https://vcd.vmwire.com\\n  org: tenant1\\n  ovdc: tenant1-vdc\\n  ovdcNetwork: default-organization-network\\n  loadBalancerConfigSpec:\\n    vipSubnet: null\\n  useAsManagementCluster: false\\n  userContext:\\n    secretRef:\\n      name: capi-user-credentials\\n      namespace: tkg-1-ns\\n---\\napiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\nkind: VCDMachineTemplate\\nmetadata:\\n  name: tkg-1-control-plane\\n  namespace: tkg-1-ns\\nspec:\\n  template:\\n    spec:\\n      catalog: cse-catalog\\n      template: Ubuntu 20.04 and Kubernetes v1.22.9+vmware.1\\n      sizingPolicy: TKG small\\n      storageProfile: iscsi\\n      diskSize: 20Gi\\n---\\napiVersion: controlplane.cluster.x-k8s.io/v1beta1\\nkind: KubeadmControlPlane\\nmetadata:\\n  name: tkg-1-control-plane\\n  namespace: tkg-1-ns\\nspec:\\n  kubeadmConfigSpec:\\n    clusterConfiguration:\\n      apiServer:\\n        certSANs:\\n          - localhost\\n          - 127.0.0.1\\n      controllerManager:\\n        extraArgs:\\n          enable-hostpath-provisioner: \\\"true\\\"\\n      dns:\\n        imageRepository: projects.registry.vmware.com/tkg\\n        imageTag: v1.8.4_vmware.9\\n      etcd:\\n        local:\\n          imageRepository: projects.registry.vmware.com/tkg\\n          imageTag: v3.5.4_vmware.2\\n      imageRepository: projects.registry.vmware.com/tkg\\n    users:\\n      - name: root\\n    initConfiguration:\\n      nodeRegistration:\\n        criSocket: /run/containerd/containerd.sock\\n        kubeletExtraArgs:\\n          eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%\\n          cloud-provider: external\\n    joinConfiguration:\\n      nodeRegistration:\\n        criSocket: /run/containerd/containerd.sock\\n        kubeletExtraArgs:\\n          eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%\\n          cloud-provider: external\\n  machineTemplate:\\n    infrastructureRef:\\n      apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\n      kind: VCDMachineTemplate\\n      name: tkg-1-control-plane\\n      namespace: tkg-1-ns\\n  replicas: 1\\n  version: v1.22.9+vmware.1\\n---\\napiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\nkind: VCDMachineTemplate\\nmetadata:\\n  name: tkg-1-worker-pool-1\\n  namespace: tkg-1-ns\\nspec:\\n  template:\\n    spec:\\n      catalog: cse-catalog\\n      template: Ubuntu 20.04 and Kubernetes v1.22.9+vmware.1\\n      sizingPolicy: TKG small\\n      storageProfile: iscsi\\n      enableNvidiaGPU: false\\n      diskSize: 20Gi\\n---\\napiVersion: bootstrap.cluster.x-k8s.io/v1beta1\\nkind: KubeadmConfigTemplate\\nmetadata:\\n  name: tkg-1-worker-pool-1\\n  namespace: tkg-1-ns\\nspec:\\n  template:\\n    spec:\\n      users:\\n        - name: root\\n      joinConfiguration:\\n        nodeRegistration:\\n          criSocket: /run/containerd/containerd.sock\\n          kubeletExtraArgs:\\n            eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%\\n            cloud-provider: external\\n---\\napiVersion: cluster.x-k8s.io/v1beta1\\nkind: MachineDeployment\\nmetadata:\\n  name: tkg-1-worker-pool-1\\n  namespace: tkg-1-ns\\nspec:\\n  clusterName: tkg-1\\n  replicas: 1\\n  selector:\\n    matchLabels: null\\n  template:\\n    spec:\\n      bootstrap:\\n        configRef:\\n          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1\\n          kind: KubeadmConfigTemplate\\n          name: tkg-1-worker-pool-1\\n          namespace: tkg-1-ns\\n      clusterName: tkg-1\\n      infrastructureRef:\\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\n        kind: VCDMachineTemplate\\n        name: tkg-1-worker-pool-1\\n        namespace: tkg-1-ns\\n      version: v1.22.9+vmware.1\\n---\\napiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\nkind: VCDMachineTemplate\\nmetadata:\\n  name: tkg-1-worker-pool-2\\n  namespace: tkg-1-ns\\nspec:\\n  template:\\n    spec:\\n      catalog: cse-catalog\\n      template: Ubuntu 20.04 and Kubernetes v1.22.9+vmware.1\\n      sizingPolicy: TKG small\\n      storageProfile: iscsi\\n      enableNvidiaGPU: false\\n      diskSize: 20Gi\\n---\\napiVersion: bootstrap.cluster.x-k8s.io/v1beta1\\nkind: KubeadmConfigTemplate\\nmetadata:\\n  name: tkg-1-worker-pool-2\\n  namespace: tkg-1-ns\\nspec:\\n  template:\\n    spec:\\n      users:\\n        - name: root\\n      joinConfiguration:\\n        nodeRegistration:\\n          criSocket: /run/containerd/containerd.sock\\n          kubeletExtraArgs:\\n            eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%\\n            cloud-provider: external\\n---\\napiVersion: cluster.x-k8s.io/v1beta1\\nkind: MachineDeployment\\nmetadata:\\n  name: tkg-1-worker-pool-2\\n  namespace: tkg-1-ns\\nspec:\\n  clusterName: tkg-1\\n  replicas: 1\\n  selector:\\n    matchLabels: null\\n  template:\\n    spec:\\n      bootstrap:\\n        configRef:\\n          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1\\n          kind: KubeadmConfigTemplate\\n          name: tkg-1-worker-pool-2\\n          namespace: tkg-1-ns\\n      clusterName: tkg-1\\n      infrastructureRef:\\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\\n        kind: VCDMachineTemplate\\n        name: tkg-1-worker-pool-2\\n        namespace: tkg-1-ns\\n      version: v1.22.9+vmware.1\\n\"\r\n        },\r\n        \"metadata\": {\r\n            \"name\": \"tkg-1\",\r\n            \"site\": \"https://vcd.vmwire.com\",\r\n            \"orgName\": \"tenant1\",\r\n            \"virtualDataCenterName\": \"tenant1-vdc\"\r\n        },\r\n        \"apiVersion\": \"capvcd.vmware.com/v1.1\"\r\n    },\r\n    \"state\": \"PRE_CREATED\",\r\n    \"owner\": {\r\n        \"name\": \"tenant1-admin\",\r\n        \"id\": \"urn:vcloud:user:8f897e3a-10f7-48a4-b8e7-592540eb5ae9\"\r\n    },\r\n    \"org\": {\r\n        \"name\": \"tenant1\",\r\n        \"id\": \"urn:vcloud:org:e71f1eec-86b5-416e-a821-c802f87a9f5d\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://{{vcd_public_address}}/cloudapi/1.0.0/entities/urn:vcloud:entity:vmware:capvcdCluster:97f12581-6407-42bb-bfc8-82602471d6a8",
+							"protocol": "https",
+							"host": [
+								"{{vcd_public_address}}"
+							],
+							"path": [
+								"cloudapi",
+								"1.0.0",
+								"entities",
+								"urn:vcloud:entity:vmware:capvcdCluster:97f12581-6407-42bb-bfc8-82602471d6a8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
