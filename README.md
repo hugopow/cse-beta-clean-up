@@ -11,3 +11,12 @@ If you don’t clean up, when you try to configure CSE again with the CSE Manage
 1. Import this collection into Postman.
 2. Create an environment for your VCD environment variable using vcd_public_address
 3. Run through each API call in the collection.
+
+
+4. Change pending cluster's serviceDomain - this is not required for the clean-up but you can use this for the beta.
+4.1 Power off CSE beta appliance
+4.2 Deploy CSE cluster
+4.3 Use this API to change the serviceDomain from the default k8s.test to cluster.local by editing the body of the PUT call
+4.4 Power on CSE beta appliance
+4.5 CSE will then deploy the new cluster with the changed serviceDomain.
+4.6 Note that you cannot change the serviceDomain on an already deployed cluster.
