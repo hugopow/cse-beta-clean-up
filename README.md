@@ -17,8 +17,14 @@ If you don’t clean up, when you try to configure CSE again with the CSE Manage
 
 
 -Power off CSE beta appliance
+
 -Deploy CSE cluster
+
 -Use this API to change the serviceDomain from the default k8s.test to cluster.local by editing the body of the PUT call
+
 -Power on CSE beta appliance
+
 -CSE will then deploy the new cluster with the changed serviceDomain.
+
 -Note that you cannot change the serviceDomain on an already deployed cluster.
+
