@@ -10,4 +10,4 @@ If you don’t clean up, when you try to configure CSE again with the CSE Manage
 
 1. Import this collection into Postman.
 2. Create an environment for your VCD environment variable using vcd_public_address
-3. Run through each API in the collection.
+3. Run through each API call in the collection.
