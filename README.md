@@ -7,3 +7,7 @@ CSE 4.0 will GA this quarter. For those partners that have been testing the beta
 If you don’t clean up, when you try to configure CSE again with the CSE Management wizard, you’ll see the message below:
 
 “Server configuration entity already exists.”
+
+1. Import this collection into Postman.
+2. Create an environment for your VCD environment variable using vcd_public_address
+3. Run through each API in the collection.
