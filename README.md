@@ -14,6 +14,8 @@ If you don’t clean up, when you try to configure CSE again with the CSE Manage
 
 
 4. Change pending cluster's serviceDomain - this is not required for the clean-up but you can use this for the beta.
+
+
 -Power off CSE beta appliance
 -Deploy CSE cluster
 -Use this API to change the serviceDomain from the default k8s.test to cluster.local by editing the body of the PUT call
